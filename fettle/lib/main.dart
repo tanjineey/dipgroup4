@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'ui/screens/home_view.dart';
-import 'ui/screens/login_view.dart';
+import 'ui/screens/home.dart';
+import 'ui/screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,10 +37,10 @@ class MyApp extends StatelessWidget {
                     theme: ThemeData(
                       primarySwatch: Colors.blue,
                     ),
-                    home: auth.isLoggedIn ? HomeView() : LoginView(),
+                    home: auth.isLoggedIn ? HomeScreen() : LoginScreen(),
                     routes: {
-                      HomeView.id: (context) => HomeView(),
-                      LoginView.id: (context) => LoginView(),
+                      HomeScreen.id: (context) => HomeScreen(),
+                      LoginScreen.id: (context) => LoginScreen(),
                     });
               }));
         });

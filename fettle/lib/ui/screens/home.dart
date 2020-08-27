@@ -3,13 +3,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   static String id = 'home';
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeScreenState extends State<HomeScreen> {
   bool loading = false;
   TextEditingController textEditingController = TextEditingController();
   @override

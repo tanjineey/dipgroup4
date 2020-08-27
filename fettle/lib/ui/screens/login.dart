@@ -5,13 +5,13 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../providers/auth.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   static String id = 'login';
   @override
-  _LoginViewState createState() => _LoginViewState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginScreenState extends State<LoginScreen> {
   bool loading = false;
 
   void _googleSignIn() async {
