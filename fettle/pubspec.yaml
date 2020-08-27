@@ -32,6 +32,8 @@ dependencies:
   firebase_storage: ^4.0.0
   flutter_image_compress: ^0.6.3
   flutter_local_notifications: 0.9.1
+  flutter_spinkit: "^4.0.0" 
+  google_sign_in: ^4.5.3
   health: ^2.0.3
   provider: ^4.3.2+1
   purchases_flutter: ^1.2.1

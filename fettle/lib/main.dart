@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'ui/screens/home_view.dart';
+import 'ui/screens/login_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,26 +13,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return FutureBuilder<Object>(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError ||
+              snapshot.connectionState != ConnectionState.done) {
+            return Container(color: Colors.black);
+          }
+          return MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (context) => AuthProvider()),
+                // ChangeNotifierProxyProvider<AuthProvider, ContactsProvider>(
+                //   builder: (context, auth, previousMessages) =>
+                //       ContactsProvider(auth),
+                // initialBuilder: (BuildContext context) => ContactsProvider(null),
+                // ),
+              ],
+              child: Consumer<AuthProvider>(builder: (ctx, auth, _) {
+                Key key = new UniqueKey();
+                return MaterialApp(
+                    key: key,
+                    title: 'Fettle',
+                    theme: ThemeData(
+                      primarySwatch: Colors.blue,
+                    ),
+                    home: auth.isLoggedIn ? HomeView() : LoginView(),
+                    routes: {
+                      HomeView.id: (context) => HomeView(),
+                      LoginView.id: (context) => LoginView(),
+                    });
+              }));
+        });
   }
 }
 
