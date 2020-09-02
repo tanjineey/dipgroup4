@@ -29,11 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlatButton(
+            RaisedButton(
               child: Text("hello"),
               onPressed: () {
                 _googleSignIn();

@@ -18,7 +18,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<bool> socialLogin() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    await googleSignIn.disconnect();
+    await googleSignIn.signOut();
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     if (googleSignInAccount == null) return false;
     final GoogleSignInAuthentication googleSignInAuthentication =
