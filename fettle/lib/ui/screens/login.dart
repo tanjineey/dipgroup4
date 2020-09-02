@@ -29,13 +29,17 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-            child: RaisedButton(
-          child: Text("hello"),
-          onPressed: () {
-            _googleSignIn();
-          },
-        )));
+        backgroundColor: Colors.white,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlatButton(
+              child: Text("hello"),
+              onPressed: () {
+                _googleSignIn();
+              },
+            )
+          ],
+        ));
   }
 }

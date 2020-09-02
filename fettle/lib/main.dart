@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError ||
               snapshot.connectionState != ConnectionState.done) {
+            print(snapshot.error);
             return Container(color: Colors.black);
           }
           return MultiProvider(

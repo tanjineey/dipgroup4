@@ -1,4 +1,4 @@
-package com.example.fettle
+package co.fettle.main
 
 import io.flutter.embedding.android.FlutterActivity
 
