@@ -5,6 +5,10 @@ import 'providers/avatar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'ui/screens/home.dart';
 import 'ui/screens/login.dart';
+import 'ui/screens/food.dart';
+import 'ui/screens/exercise.dart';
+import 'ui/screens/sleep.dart';
+import 'ui/screens/social.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +23,6 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError ||
               snapshot.connectionState != ConnectionState.done) {
-            print(snapshot.error);
             return Container(color: Colors.black);
           }
           return MultiProvider(
@@ -27,10 +30,8 @@ class MyApp extends StatelessWidget {
                 ChangeNotifierProvider(create: (context) => AuthProvider()),
                 ChangeNotifierProxyProvider<AuthProvider, AvatarProvider>(
                   create: (ctx) => AvatarProvider(),
-                  update: (ctx, auth, prevShop) =>
-                      prevShop..update(auth),
+                  update: (ctx, auth, prevShop) => prevShop..update(auth),
                 ),
-                
               ],
               child: Consumer<AuthProvider>(builder: (ctx, auth, _) {
                 Key key = new UniqueKey();
@@ -42,8 +43,12 @@ class MyApp extends StatelessWidget {
                     ),
                     home: auth.isLoggedIn ? HomeScreen() : LoginScreen(),
                     routes: {
+                      ExerciseScreen.id: (context) => ExerciseScreen(),
+                      FoodScreen.id: (context) => FoodScreen(),
                       HomeScreen.id: (context) => HomeScreen(),
                       LoginScreen.id: (context) => LoginScreen(),
+                      SleepScreen.id: (context) => SleepScreen(),
+                      SocialScreen.id: (context) => SocialScreen(),
                     });
               }));
         });

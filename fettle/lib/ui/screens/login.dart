@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../providers/auth.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
+import 'dart:io';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login';
@@ -36,17 +35,30 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: mainButtonColor)),
-                color: mainButtonColor,
-                padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
-                child: Text("Login",
-                    style: TextStyle(color: Colors.white, fontSize: 24)),
-                onPressed: () {
-                  _googleSignIn();
-                },
+              child: Column(
+                children: <Widget>[
+                  RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: mainButtonColor)),
+                    color: mainButtonColor,
+                    padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                    child: Text("Login",
+                        style: TextStyle(color: Colors.white, fontSize: 24)),
+                    onPressed: () {
+                      _googleSignIn();
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Text(
+                      "Please ensure " +
+                          (Platform.isIOS ? 'Apple Health' : 'Google Fit') +
+                          " is installed before proceeding.",
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             )
           ],

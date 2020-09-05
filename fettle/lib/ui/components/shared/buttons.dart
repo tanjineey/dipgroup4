@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
-import '../../../../constants.dart';
+import '../../../constants.dart';
 
 class MainButton extends StatefulWidget {
   final String title;
   final Function onPressed;
 
-  const MainButton({
-    Key key,
-    @required this.onPressed,
-    @required this.title,
-  }) : super(key: key);
+  const MainButton({Key key, @required this.onPressed, @required this.title})
+      : super(key: key);
+
   @override
   _MainButtonState createState() => _MainButtonState();
 }
