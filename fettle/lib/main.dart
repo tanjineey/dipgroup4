@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth.dart';
+import 'providers/avatar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'ui/screens/home.dart';
 import 'ui/screens/login.dart';
@@ -24,11 +25,12 @@ class MyApp extends StatelessWidget {
           return MultiProvider(
               providers: [
                 ChangeNotifierProvider(create: (context) => AuthProvider()),
-                // ChangeNotifierProxyProvider<AuthProvider, ContactsProvider>(
-                //   builder: (context, auth, previousMessages) =>
-                //       ContactsProvider(auth),
-                // initialBuilder: (BuildContext context) => ContactsProvider(null),
-                // ),
+                ChangeNotifierProxyProvider<AuthProvider, AvatarProvider>(
+                  create: (ctx) => AvatarProvider(),
+                  update: (ctx, auth, prevShop) =>
+                      prevShop..update(auth),
+                ),
+                
               ],
               child: Consumer<AuthProvider>(builder: (ctx, auth, _) {
                 Key key = new UniqueKey();

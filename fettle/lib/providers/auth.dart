@@ -12,29 +12,37 @@ class AuthProvider with ChangeNotifier {
   final FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
   bool initOnline = false;
   bool tempLockDisable = false;
-  User user;
+  bool onboarded = false;
 
   bool get isLoggedIn => _fAuth.currentUser != null;
+  String get userId => _fAuth.currentUser.uid;
 
   Future<bool> socialLogin() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
-    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    if (googleSignInAccount == null) return false;
-    final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
-    final UserCredential authResult =
-        await _fAuth.signInWithCredential(credential);
-    final User user = authResult.user;
-    firebaseMessaging.getToken().then((token) async {
-      FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-        'pushToken': token,
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      await googleSignIn.signOut();
+      final GoogleSignInAccount googleSignInAccount =
+          await googleSignIn.signIn();
+      if (googleSignInAccount == null) return false;
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      final UserCredential authResult =
+          await _fAuth.signInWithCredential(credential);
+      User user = authResult.user;
+      firebaseMessaging.getToken().then((token) async {
+        FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+          'pushToken': token,
+        });
+      }).catchError((err) {
+        print(err);
       });
-    }).catchError((err) {});
+    } catch (e) {
+      print(e);
+    }
     notifyListeners();
     return true;
   }
@@ -43,7 +51,6 @@ class AuthProvider with ChangeNotifier {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     await _fAuth.signOut();
-    user = null;
     notifyListeners();
     return true;
   }
