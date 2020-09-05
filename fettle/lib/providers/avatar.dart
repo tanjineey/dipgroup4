@@ -12,28 +12,16 @@ import 'package:health/health.dart';
 
 class AvatarProvider with ChangeNotifier {
   AuthProvider auth;
+
   bool onboarded = false;
+  bool autoSleep = false;
 
   String name;
   double height;
   double weight;
   Gender gender = Gender.Male;
 
-  HealthFactory health = HealthFactory();
-
-  List<HealthDataType> types = [
-    HealthDataType.BODY_MASS_INDEX,
-    HealthDataType.ACTIVE_ENERGY_BURNED,
-    HealthDataType.DISTANCE_WALKING_RUNNING,
-    HealthDataType.WEIGHT,
-    HealthDataType.HEIGHT,
-    HealthDataType.SLEEP_IN_BED,
-  ];
-
-  List<HealthDataPoint> healthData = [];
-
-  DateTime startDate = DateTime.utc(2001, 01, 01);
-  DateTime endDate = DateTime.now();
+  bool isSleeping = false;
 
   get heightString => height.toString() + 'm';
   get weightString => weight.round().toString() + 'kg';
@@ -41,6 +29,7 @@ class AvatarProvider with ChangeNotifier {
   void update(AuthProvider auth) => this.auth = auth;
 
   Future fetchBioData() async {
+    print("fetching bio data");
     DocumentSnapshot avatarDocument = await FirebaseFirestore.instance
         .collection('avatars')
         .doc(auth.userId)
@@ -49,38 +38,41 @@ class AvatarProvider with ChangeNotifier {
       onboarded = false;
     } else {
       name = avatarDocument.data()['name'];
-      healthData =
-          await health.getHealthDataFromTypes(startDate, endDate, types);
-      healthData = HealthFactory.removeDuplicates(healthData);
-      height = healthData
-              .lastWhere((element) => element.type == HealthDataType.HEIGHT,
-                  orElse: null)
-              ?.value
-              ?.toDouble() ??
-          1.6;
-      weight = healthData
-              .lastWhere((element) => element.type == HealthDataType.WEIGHT,
-                  orElse: null)
-              ?.value
-              ?.toDouble() ??
-          50.0;
+      height = avatarDocument.data()['height'];
+      weight = avatarDocument.data()['weight'];
       gender = (avatarDocument.data()['gender'] == 'M')
           ? Gender.Male
           : Gender.Female;
-      if (avatarDocument.data()['height'] != height ||
-          avatarDocument.data()['weight'] != weight)
-        FirebaseFirestore.instance.collection('avatars').doc(auth.userId).set({
-          'height': height,
-          'weight': weight,
-        }, SetOptions(merge: true));
+      autoSleep = avatarDocument.data()['autoSleep'];
+      isSleeping = avatarDocument.data()['isSleeping'];
       onboarded = true;
     }
-    print('return');
     return;
+  }
+
+  void updateAutoSleep(bool auto) {
+    print("updating auto sleep");
+    autoSleep = auto;
+    FirebaseFirestore.instance
+        .collection('avatars')
+        .doc(auth.userId)
+        .set({'autoSleep': autoSleep}, SetOptions(merge: true));
+    notifyListeners();
+  }
+
+  void toggleSleepStatus() {
+    print("toggling sleep status");
+    isSleeping = !isSleeping;
+    FirebaseFirestore.instance
+        .collection('avatars')
+        .doc(auth.userId)
+        .set({'isSleeping': isSleeping}, SetOptions(merge: true));
+    notifyListeners();
   }
 
   Future saveBioData(
       String name, double height, double weight, Gender gender) async {
+    print("saving bio data");
     this.height = height;
     this.weight = weight;
     this.gender = gender;
@@ -92,7 +84,9 @@ class AvatarProvider with ChangeNotifier {
       'name': name,
       'height': height,
       'weight': weight,
-      'gender': (gender == Gender.Male) ? 'M' : 'F'
+      'gender': (gender == Gender.Male) ? 'M' : 'F',
+      'autoSleep': autoSleep,
+      'isSleeping': isSleeping
     }, SetOptions(merge: true));
     onboarded = true;
     notifyListeners();

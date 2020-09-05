@@ -17,8 +17,8 @@ class _OnboardingModalState extends State<OnboardingModal> {
   bool loading = false;
   TextEditingController nameController = TextEditingController();
   bool enteredName = false;
-  double height;
-  double weight;
+  double height = 1.6;
+  double weight = 50.0;
   Gender gender = Gender.Male;
 
   bool syncWithWearable;
@@ -59,6 +59,41 @@ class _OnboardingModalState extends State<OnboardingModal> {
             ?.toDouble() ??
         50.0;
     setState(() {});
+  }
+
+  Widget renderSliders() {
+    return Column(children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text("Height: " + height.toStringAsPrecision(3) + "m"),
+          ),
+          Slider(
+              label: (height * 100).toString(),
+              max: 200,
+              min: 100,
+              value: height * 100,
+              onChanged: (value) => setState(() => height = value / 100)),
+        ],
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text("Weight: " + weight.round().toString() + "kg"),
+          ),
+          Slider(
+              label: weight.round().toString(),
+              max: 150,
+              min: 40,
+              value: weight,
+              onChanged: (value) => setState(() => weight = value)),
+        ],
+      )
+    ]);
   }
 
   @override
@@ -103,92 +138,62 @@ class _OnboardingModalState extends State<OnboardingModal> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Text("Welcome to fettle, " + nameController.text + "!"),
-                Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text("Select your gender."),
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () => setState(() => gender = Gender.Male),
-                            child: Text("Male",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: gender == Gender.Male
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                    color: gender == Gender.Male
-                                        ? Colors.black
-                                        : Colors.black54)),
-                          ),
-                          InkWell(
-                            onTap: () => setState(() => gender = Gender.Female),
-                            child: Text("Female",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: gender == Gender.Female
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                    color: gender == Gender.Female
-                                        ? Colors.black
-                                        : Colors.black54)),
-                          ),
-                        ]),
-                  ],
-                ),
-                if (height != null && weight != null)
-                  Column(children: <Widget>[
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text('Look at that body.'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(height.toString() + 'm',
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () => setState(() => gender = Gender.Male),
+                        child: Text("Male",
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(weight.toString() + 'kg',
+                                fontSize: 20,
+                                fontWeight: gender == Gender.Male
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                color: gender == Gender.Male
+                                    ? Colors.black
+                                    : Colors.black54)),
+                      ),
+                      InkWell(
+                        onTap: () => setState(() => gender = Gender.Female),
+                        child: Text("Female",
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ]),
+                                fontSize: 20,
+                                fontWeight: gender == Gender.Female
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                color: gender == Gender.Female
+                                    ? Colors.black
+                                    : Colors.black54)),
+                      ),
+                    ]),
                 Column(children: <Widget>[
-                  if (height == null || weight == null)
-                    MainButton(
-                        onPressed: fetchDeviceData,
-                        title: ("Sync with " +
-                            (Platform.isIOS ? 'Apple Health' : 'Google Fit'))),
-                  if (height != null && weight != null)
-                    MainButton(
-                        onPressed: () => Provider.of<AvatarProvider>(context,
-                                listen: false)
-                            .saveBioData(
-                                nameController.text, height, weight, gender),
-                        title: 'Data is accurate. Continue.'),
-                  if (height != null && weight != null)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                          onTap: fetchDeviceData,
-                          child: Text(
-                            "Data not accurate? Change them in your " +
-                                (Platform.isIOS
-                                    ? 'Apple Health'
-                                    : 'Google Fit') +
-                                " app and tap here to resync.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 10,
-                                decoration: TextDecoration.underline,
-                                decorationStyle: TextDecorationStyle.dotted),
-                          )),
-                    )
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Divider(),
+                  ),
+                  renderSliders()
+                ]),
+                Column(children: <Widget>[
+                  MainButton(
+                      onPressed: () =>
+                          Provider.of<AvatarProvider>(context, listen: false)
+                              .saveBioData(
+                                  nameController.text, height, weight, gender),
+                      title: 'Continue.'),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: InkWell(
+                        onTap: fetchDeviceData,
+                        child: Text(
+                          "Sync with " +
+                              (Platform.isIOS ? 'Apple Health' : 'Google Fit'),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 12,
+                              decoration: TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.dotted),
+                        )),
+                  )
                 ]),
               ],
             )));

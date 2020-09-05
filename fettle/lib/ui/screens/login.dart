@@ -3,7 +3,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../providers/auth.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
-import 'dart:io';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login';
@@ -48,15 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       _googleSignIn();
                     },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Text(
-                      "Please ensure " +
-                          (Platform.isIOS ? 'Apple Health' : 'Google Fit') +
-                          " is installed before proceeding.",
-                      textAlign: TextAlign.center,
-                    ),
                   ),
                 ],
               ),

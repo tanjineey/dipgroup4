@@ -42,7 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(),
-                      BottomNavBar(currentScreenId: HomeScreen.id, active: false)
+                      BottomNavBar(
+                          currentScreenId: HomeScreen.id, active: false)
                     ],
                   ),
                 ));
