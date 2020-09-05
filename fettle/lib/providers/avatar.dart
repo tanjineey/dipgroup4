@@ -53,7 +53,7 @@ class AvatarProvider with ChangeNotifier {
           await health.getHealthDataFromTypes(startDate, endDate, types);
       healthData = HealthFactory.removeDuplicates(healthData);
       height = healthData
-              .firstWhere((element) => element.type == HealthDataType.HEIGHT,
+              .lastWhere((element) => element.type == HealthDataType.HEIGHT,
                   orElse: null)
               ?.value
               ?.toDouble() ??

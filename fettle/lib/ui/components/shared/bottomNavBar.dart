@@ -7,12 +7,14 @@ import '../../screens/social.dart';
 
 class BottomNavBar extends StatelessWidget {
   final String currentScreenId;
-  BottomNavBar({@required this.currentScreenId});
+  final bool active;
+  BottomNavBar({@required this.currentScreenId, this.active = true});
 
   Widget generateLink(Widget screen, String screenId, BuildContext context) {
     return InkWell(
-        onTap: () =>
-            Navigator.pushReplacement(context, FadeRoute(page: screen)),
+        onTap: () => active
+            ? Navigator.pushReplacement(context, FadeRoute(page: screen))
+            : null,
         child: Text(screenId,
             style: TextStyle(
                 fontWeight: currentScreenId == screenId

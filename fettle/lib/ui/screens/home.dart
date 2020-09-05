@@ -34,7 +34,18 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasError ||
               snapshot.connectionState != ConnectionState.done) {
-            return Container(color: mainBackgroundColor);
+            return Scaffold(
+                backgroundColor: mainBackgroundColor,
+                body: SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(),
+                      BottomNavBar(currentScreenId: HomeScreen.id, active: false)
+                    ],
+                  ),
+                ));
           }
 
           return Scaffold(

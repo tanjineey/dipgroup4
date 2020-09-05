@@ -47,13 +47,13 @@ class _OnboardingModalState extends State<OnboardingModal> {
     healthData = await health.getHealthDataFromTypes(startDate, endDate, types);
     healthData = HealthFactory.removeDuplicates(healthData);
     height = healthData
-            .firstWhere((element) => element.type == HealthDataType.HEIGHT,
+            .lastWhere((element) => element.type == HealthDataType.HEIGHT,
                 orElse: null)
             ?.value
             ?.toDouble() ??
         1.6;
     weight = healthData
-            .firstWhere((element) => element.type == HealthDataType.WEIGHT,
+            .lastWhere((element) => element.type == HealthDataType.WEIGHT,
                 orElse: null)
             ?.value
             ?.toDouble() ??
