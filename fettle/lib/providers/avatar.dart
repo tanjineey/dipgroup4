@@ -23,6 +23,10 @@ class AvatarProvider with ChangeNotifier {
 
   bool isSleeping = false;
 
+  double currentCalories = 0.0;
+  double maxCalories = 100.0;
+
+  get calorieQuotaFraction => currentCalories / maxCalories;
   get heightString => height.toString() + 'm';
   get weightString => weight.round().toString() + 'kg';
 

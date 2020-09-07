@@ -65,48 +65,64 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                    "Sup, " +
-                                        Provider.of<AvatarProvider>(context)
-                                            .name,
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(height: 20),
-                                Text(
-                                    "Height: " +
-                                        Provider.of<AvatarProvider>(context)
-                                            .heightString,
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(height: 20),
-                                Text(
-                                    "Weight: " +
-                                        Provider.of<AvatarProvider>(context)
-                                            .weightString,
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(height: 20),
-                                Center(
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(18.0),
-                                        side:
-                                            BorderSide(color: mainButtonColor)),
-                                    color: mainButtonColor,
-                                    padding:
-                                        EdgeInsets.fromLTRB(25, 10, 25, 10),
-                                    child: Text("Logout",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 24)),
-                                    onPressed: () {
-                                      _googleSignOut();
-                                    },
-                                  ),
-                                )
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      Column(children: <Widget>[
+                                        Text(
+                                            "Sup, " +
+                                                Provider.of<AvatarProvider>(
+                                                        context)
+                                                    .name,
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold)),
+                                        SizedBox(height: 20),
+                                        Text(
+                                            "Height: " +
+                                                Provider.of<AvatarProvider>(
+                                                        context)
+                                                    .heightString,
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold)),
+                                        SizedBox(height: 20),
+                                        Text(
+                                            "Weight: " +
+                                                Provider.of<AvatarProvider>(
+                                                        context)
+                                                    .weightString,
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold)),
+                                        SizedBox(height: 25),
+                                        RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              side: BorderSide(
+                                                  color: mainButtonColor)),
+                                          color: mainButtonColor,
+                                          padding: EdgeInsets.fromLTRB(
+                                              25, 10, 25, 10),
+                                          child: Text("Logout",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 24)),
+                                          onPressed: () {
+                                            _googleSignOut();
+                                          },
+                                        ),
+                                      ]),
+                                      Container(
+                                          color: Colors.white,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.7,
+                                          width: 50)
+                                    ]),
                               ],
                             ),
                           ),
