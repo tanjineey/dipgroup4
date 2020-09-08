@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1002850901829-ks7gs4um4nhkuosac0pm387vfueihhrs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.fettle.main",
+            "certificate_hash": "7e8c955d2d21751cf6ebf55f33d6a26571758e46"
+          }
+        },
+        {
+          "client_id": "1002850901829-fmmep0rk7ia3ukaquprfhidi80tnl3dd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.fettle.main",
+            "certificate_hash": "eb3e9cc6cbdd3f0e87ddd37c4574e24ce7e79439"
+          }
+        },
+        {
           "client_id": "1002850901829-s2ku1ih7tehmmm7lecrrlvcdu1vt4q21.apps.googleusercontent.com",
           "client_type": 3
         }

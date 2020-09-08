@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: <Widget>[
                                       Column(children: <Widget>[
                                         Text(
-                                            "Sup, " +
+                                            "Welcome to Fettle!, " +
                                                 Provider.of<AvatarProvider>(
                                                         context)
                                                     .name,
