@@ -372,7 +372,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2+1"
+    version: "4.3.2+2"
   purchases_flutter:
     dependency: "direct main"
     description:
