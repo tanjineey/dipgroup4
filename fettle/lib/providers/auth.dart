@@ -17,22 +17,8 @@ class AuthProvider with ChangeNotifier {
   bool get isLoggedIn => _fAuth.currentUser != null;
   String get userId => _fAuth.currentUser.uid;
 
-  Future<bool> socialLogin() async {
+  Future<bool> smsLogin(User user) async {
     try {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-      await googleSignIn.signOut();
-      final GoogleSignInAccount googleSignInAccount =
-          await googleSignIn.signIn();
-      if (googleSignInAccount == null) return false;
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
-      final UserCredential authResult =
-          await _fAuth.signInWithCredential(credential);
-      User user = authResult.user;
       firebaseMessaging.getToken().then((token) async {
         FirebaseFirestore.instance.collection('users').doc(user.uid).update({
           'pushToken': token,
@@ -47,9 +33,7 @@ class AuthProvider with ChangeNotifier {
     return true;
   }
 
-  Future<bool> socialLogout() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
+  Future<bool> smsLogout() async {
     await _fAuth.signOut();
     notifyListeners();
     return true;

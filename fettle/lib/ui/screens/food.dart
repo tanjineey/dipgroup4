@@ -41,10 +41,12 @@ class _FoodScreenState extends State<FoodScreen> {
                             ImagePicker imagePicker = new ImagePicker();
                             imageFile = await imagePicker.getImage(
                                 source: ImageSource.camera, imageQuality: 30);
-                            setState(() => loading = true);
-                            predictionMap = await FoodAI.getFoodPrediction(
-                                File(imageFile.path));
-                            setState(() => loading = false);
+                            if (imageFile != null) {
+                              setState(() => loading = true);
+                              predictionMap = await FoodAI.getFoodPrediction(
+                                  File(imageFile.path));
+                              setState(() => loading = false);
+                            }
                           }
                         },
                       )),

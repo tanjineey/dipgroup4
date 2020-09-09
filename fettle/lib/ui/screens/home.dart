@@ -21,9 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void _googleSignOut() async {
+  void _signOut() async {
     setState(() => loading = true);
-    Provider.of<AuthProvider>(context, listen: false).socialLogout();
+    Provider.of<AuthProvider>(context, listen: false).smsLogout();
     setState(() => loading = false);
   }
 
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   color: Colors.white,
                                                   fontSize: 24)),
                                           onPressed: () {
-                                            _googleSignOut();
+                                            _signOut();
                                           },
                                         ),
                                       ]),
