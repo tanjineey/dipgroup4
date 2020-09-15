@@ -13,20 +13,22 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FoodAI {
-  static Future<Map<String, double>> getFoodPrediction(File photo) async {
+  static Future<Map<String, double>> getFoodPrediction({File photo}) async {
     Map<String, double> predictionMap = {};
     final FirebaseAuth _fAuth = FirebaseAuth.instance;
     User user = _fAuth.currentUser;
-    FirebaseStorage storage =
-        new FirebaseStorage(storageBucket: 'gs://auth-cf4ea.appspot.com');
-    StorageReference reference = storage
-        .ref()
-        .child('user')
-        .child(user.uid)
-        .child(DateTime.now().millisecondsSinceEpoch.toString());
-    StorageUploadTask uploadTask = reference.putFile(photo);
-    StorageTaskSnapshot storageTaskSnapshot = await uploadTask.onComplete;
-    String imageURL = await storageTaskSnapshot.ref.getDownloadURL();
+    // FirebaseStorage storage =
+    //     new FirebaseStorage(storageBucket: 'gs://auth-cf4ea.appspot.com');
+    // StorageReference reference = storage
+    //     .ref()
+    //     .child('user')
+    //     .child(user.uid)
+    //     .child(DateTime.now().millisecondsSinceEpoch.toString());
+    // StorageUploadTask uploadTask = reference.putFile(photo);
+    // StorageTaskSnapshot storageTaskSnapshot = await uploadTask.onComplete;
+    // String imageURL = await storageTaskSnapshot.ref.getDownloadURL();
+    String imageURL =
+        'https://ucarecdn.com/76a65f56-fcfa-44b9-aa1f-c63938b4b797/-/scale_crop/1280x960/center/-/quality/normal/-/format/jpeg/mee-rebus.jpg';
     print('make request');
     dynamic response = await http.post('http://api.foodai.org/v1/classify',
         headers: {
@@ -38,6 +40,8 @@ class FoodAI {
           'num_tag': 10,
           'api_key': foodAIkey,
         }));
+    print('request done');
+    print(response.body);
     List results = json.decode(response.body)['food_results'];
     int itemsPredicted = results.length > 0 ? results[0].length : 0;
     try {

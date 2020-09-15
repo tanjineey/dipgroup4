@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.black),
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Mobile Number",
+                  hintText: "DIan Hua Number",
                   hintStyle: TextStyle(
                       color: Colors.black,
                       fontFamily: "WorkSansSemiBold",

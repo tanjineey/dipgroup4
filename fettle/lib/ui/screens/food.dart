@@ -37,17 +37,20 @@ class _FoodScreenState extends State<FoodScreen> {
                       child: RaisedButton(
                         child: Text('Predict'),
                         onPressed: () async {
-                          if (await Permission.camera.request().isGranted) {
-                            ImagePicker imagePicker = new ImagePicker();
-                            imageFile = await imagePicker.getImage(
-                                source: ImageSource.camera, imageQuality: 30);
-                            if (imageFile != null) {
-                              setState(() => loading = true);
-                              predictionMap = await FoodAI.getFoodPrediction(
-                                  File(imageFile.path));
-                              setState(() => loading = false);
-                            }
-                          }
+                          // if (await Permission.camera.request().isGranted) {
+                          //   ImagePicker imagePicker = new ImagePicker();
+                          //   imageFile = await imagePicker.getImage(
+                          //       source: ImageSource.camera, imageQuality: 30);
+                          //   if (imageFile != null) {
+                          //     setState(() => loading = true);
+                          //     predictionMap = await FoodAI.getFoodPrediction(
+                          //         File(imageFile.path));
+                          //     setState(() => loading = false);
+                          //   }
+                          // }
+                          setState(() => loading = true);
+                          predictionMap = await FoodAI.getFoodPrediction();
+                          setState(() => loading = false);
                         },
                       )),
                   if (loading)
