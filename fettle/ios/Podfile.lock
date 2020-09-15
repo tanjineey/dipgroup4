@@ -438,7 +438,7 @@ PODS:
     - PurchasesHybridCommon (= 1.2.0)
   - PurchasesHybridCommon (1.2.0):
     - Purchases (= 3.4.0)
-  - SDWebImage/Core (5.8.4)
+  - SDWebImage/Core (5.9.0)
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
@@ -599,9 +599,9 @@ SPEC CHECKSUMS:
   Purchases: b8cac232e403ca51541a425a65992b902cecc044
   purchases_flutter: b27e7df010dbf09f9b7bdd849cc83ac19c3444d9
   PurchasesHybridCommon: deba31751165f0a0f84eba3df68a54641f8a69b1
-  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
 
-PODFILE CHECKSUM: 56c05162b6f0c734d13dfef20e0e73b4d1425299
+PODFILE CHECKSUM: 4571af7645529b3edbff1eb45f6d3a9f7038c87c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
