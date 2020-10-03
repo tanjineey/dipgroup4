@@ -33,8 +33,9 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                   Icon(
                     Icons.home,
                     color: Colors.black,
-                    size: 80.0,
+                    size: 60.0,
                   ),
+                  SizedBox(width: 60,),
                   Icon(
                     Icons.monetization_on,
                     color: Colors.blueGrey,
@@ -42,15 +43,17 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                   ),
                   Container(
                     child: Text(
-                      '{Amount of Gems}',
+                      '36,001',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 35,
                       ),
                     ),
                   )
                 ],
               ),
+              // Shop Title
               Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: Text(
                   "SHOP",
                   style: TextStyle(
@@ -62,11 +65,15 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
               ),
               // Tab Section
               Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
                 child: DefaultTabController(
                   length: 2,
                   child: SizedBox(
-                    height: 400,
+                    height: 460,
                     child: Column(
                       children: [
                         TabBar(
