@@ -87,15 +87,101 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                             ),
                             Tab(
                                 icon: Icon(Icons.flight),
-                                text: "Flight"
+                                text: "Flights"
                             ),
                           ],
                         ),
                         Expanded(
                           child: TabBarView(
                             children: [
-                              Text('a'),
-                              Text('b')
+                              Column(
+                                children: [
+                                  Card(
+                                    color: Colors.limeAccent[100],
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Icon(Icons.image),
+                                        Text('Kimono 35 coins'),
+                                        RaisedButton(
+                                          onPressed: () {},
+                                          color: Colors.blue,
+                                          child: Text(
+                                            'Buy',
+                                            style: TextStyle(
+                                              color: Colors.white
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ),
+                                  Card(
+                                      color: Colors.limeAccent[100],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(Icons.image),
+                                          Text('Grass Skirt 35 coins'),
+                                          RaisedButton(
+                                            onPressed: () {},
+                                            color: Colors.green,
+                                            child: Text(
+                                              'Wear',
+                                              style: TextStyle(
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Card(
+                                      color: Colors.limeAccent[100],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(Icons.image),
+                                          Text('Kimono 35 coins'),
+                                          RaisedButton(
+                                            onPressed: () {},
+                                            color: Colors.blue,
+                                            child: Text(
+                                              'Buy',
+                                              style: TextStyle(
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                  ),
+                                  Card(
+                                      color: Colors.limeAccent[100],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(Icons.image),
+                                          Text('Parasol 35 coins'),
+                                          RaisedButton(
+                                            onPressed: () {},
+                                            color: Colors.blue,
+                                            child: Text(
+                                              'Buy',
+                                              style: TextStyle(
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                  ),
+                                ],
+                              )
                             ],
                           ),
                         ),
