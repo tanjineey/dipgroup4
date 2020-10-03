@@ -4,6 +4,7 @@ import '../../screens/food.dart';
 import '../../screens/exercise.dart';
 import '../../screens/sleep.dart';
 import '../../screens/social.dart';
+import '../../screens/shop.dart';
 
 class BottomNavBar extends StatelessWidget {
   final String currentScreenId;
@@ -31,6 +32,7 @@ class BottomNavBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            generateLink(ShopScreen(), ShopScreen.id, context),
             generateLink(FoodScreen(), FoodScreen.id, context),
             generateLink(ExerciseScreen(), ExerciseScreen.id, context),
             generateLink(HomeScreen(), HomeScreen.id, context),
