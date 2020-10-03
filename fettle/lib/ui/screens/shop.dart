@@ -184,7 +184,136 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                                           Icon(Icons.image),
                                           Text('Grass Skirt 35 coins'),
                                           RaisedButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context){
+                                                    return AlertDialog(
+                                                      content: Stack(
+                                                        overflow: Overflow.visible,
+                                                        children: [
+                                                          Positioned(
+                                                            right: -40.0,
+                                                            top: -40.0,
+                                                            child: InkResponse(
+                                                              onTap: (){
+                                                                Navigator.of(context).pop();
+                                                              },
+                                                              child: CircleAvatar(
+                                                                child: Icon(Icons.close),
+                                                                backgroundColor: Colors.red,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            top: 20,
+                                                            right: 20,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  'Take off',
+                                                                  style: TextStyle(
+                                                                      fontSize: 50
+                                                                  ),
+                                                                ),
+                                                                SizedBox(height: 50,),
+                                                                Icon(Icons.image),
+                                                                SizedBox(height: 50,),
+                                                                Text(
+                                                                  'Before you can wear',
+                                                                  style: TextStyle(
+                                                                      fontSize: 20
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  'Grass Skirt',
+                                                                  style: TextStyle(
+                                                                      fontSize: 20
+                                                                  ),
+                                                                ),
+                                                                SizedBox(height: 50,),
+                                                                RaisedButton(
+                                                                    onPressed: () {
+                                                                      Navigator.of(context).pop();
+                                                                      showDialog(
+                                                                          context: context,
+                                                                          builder: (BuildContext context){
+                                                                            return AlertDialog(
+                                                                              content: Stack(
+                                                                                overflow: Overflow.visible,
+                                                                                children: [
+                                                                                  Positioned(
+                                                                                    right: -40.0,
+                                                                                    top: -40.0,
+                                                                                    child: InkResponse(
+                                                                                      onTap: (){
+                                                                                        Navigator.of(context).pop();
+                                                                                      },
+                                                                                      child: CircleAvatar(
+                                                                                        child: Icon(Icons.close),
+                                                                                        backgroundColor: Colors.red,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Positioned(
+                                                                                    top: 20,
+                                                                                    right: 20,
+                                                                                    child: Column(
+                                                                                      children: [
+                                                                                        Text(
+                                                                                          'Looking Good!',
+                                                                                          style: TextStyle(
+                                                                                              fontSize: 30
+                                                                                          ),
+                                                                                        ),
+                                                                                        SizedBox(height: 50,),
+                                                                                        Icon(Icons.image),
+                                                                                        SizedBox(height: 50,),
+                                                                                        Text(
+                                                                                          'Grass Skirt',
+                                                                                          style: TextStyle(
+                                                                                              fontSize: 20
+                                                                                          ),
+                                                                                        ),
+                                                                                        SizedBox(height: 50,),
+                                                                                        RaisedButton(
+                                                                                            onPressed: () {
+                                                                                              Navigator.of(context).pop();
+                                                                                            },
+                                                                                            color: Colors.blue,
+                                                                                            child: Text(
+                                                                                              'Ok',
+                                                                                              style: TextStyle(
+                                                                                                  color: Colors.white
+                                                                                              ),
+                                                                                            )
+                                                                                        )
+                                                                                      ],
+                                                                                    ),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            );
+                                                                          }
+                                                                      );
+                                                                    },
+                                                                    color: Colors.blue,
+                                                                    child: Text(
+                                                                      'change',
+                                                                      style: TextStyle(
+                                                                          color: Colors.white
+                                                                      ),
+                                                                    )
+                                                                )
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    );
+                                                  }
+                                              );
+                                            },
                                             color: Colors.green,
                                             child: Text(
                                               'Wear',
