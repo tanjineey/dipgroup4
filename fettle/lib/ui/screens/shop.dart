@@ -9,7 +9,7 @@ class ShopScreen extends StatefulWidget {
   _ShopScreenState createState() => _ShopScreenState();
 }
 
-class _ShopScreenState extends State<ShopScreen> {
+class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
   bool loading = false;
 
   @override
@@ -24,9 +24,10 @@ class _ShopScreenState extends State<ShopScreen> {
         backgroundColor: mainBackgroundColor,
         body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // Top row for home button and displaying number of gems
               Row(
                 children: [
                   Icon(
@@ -49,10 +50,37 @@ class _ShopScreenState extends State<ShopScreen> {
                   )
                 ],
               ),
-              Container(),
-              BottomNavBar(currentScreenId: ShopScreen.id)
+              // Tab Section
+              DefaultTabController(
+                length: 2,
+                child: SizedBox(
+                  height: 100,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        tabs: [
+                          Tab(icon: Icon(Icons.card_giftcard), text: "Souvenir"),
+                          Tab(icon: Icon(Icons.flight), text: "Flight"),
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            Text('a'),
+                            Text('b')
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ),
             ],
           ),
-        ));
+        ),
+        bottomNavigationBar: BottomNavBar(currentScreenId: ShopScreen.id),
+    );
   }
 }
+
+
