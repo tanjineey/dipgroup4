@@ -50,30 +50,52 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                   )
                 ],
               ),
+              Container(
+                child: Text(
+                  "SHOP",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
               // Tab Section
-              DefaultTabController(
-                length: 2,
-                child: SizedBox(
-                  height: 100,
-                  child: Column(
-                    children: [
-                      TabBar(
-                        tabs: [
-                          Tab(icon: Icon(Icons.card_giftcard), text: "Souvenir"),
-                          Tab(icon: Icon(Icons.flight), text: "Flight"),
-                        ],
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            Text('a'),
-                            Text('b')
+              Container(
+                color: Colors.white,
+                child: DefaultTabController(
+                  length: 2,
+                  child: SizedBox(
+                    height: 400,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          labelColor: Colors.black,
+                          tabs: [
+                            Tab(
+                                icon: Icon(
+                                  Icons.card_giftcard,
+                                ),
+                                text: "Souvenir",
+                            ),
+                            Tab(
+                                icon: Icon(Icons.flight),
+                                text: "Flight"
+                            ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                )
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              Text('a'),
+                              Text('b')
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ),
               ),
             ],
           ),
