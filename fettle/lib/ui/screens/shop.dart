@@ -104,7 +104,67 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                                         Icon(Icons.image),
                                         Text('Kimono 35 coins'),
                                         RaisedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                              builder: (BuildContext context){
+                                                  return AlertDialog(
+                                                    content: Stack(
+                                                      overflow: Overflow.visible,
+                                                      children: [
+                                                        Positioned(
+                                                          right: -40.0,
+                                                          top: -40.0,
+                                                          child: InkResponse(
+                                                            onTap: (){
+                                                              Navigator.of(context).pop();
+                                                            },
+                                                            child: CircleAvatar(
+                                                              child: Icon(Icons.close),
+                                                              backgroundColor: Colors.red,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Positioned(
+                                                          top: 20,
+                                                          right: 20,
+                                                          child: Column(
+                                                            children: [
+                                                              Text(
+                                                                'Buy',
+                                                                style: TextStyle(
+                                                                  fontSize: 50
+                                                                ),
+                                                              ),
+                                                              SizedBox(height: 50,),
+                                                              Icon(Icons.image),
+                                                              SizedBox(height: 50,),
+                                                              Text(
+                                                                  'Kimono for 35 coins?',
+                                                                  style: TextStyle(
+                                                                    fontSize: 20
+                                                                  ),
+                                                              ),
+                                                              SizedBox(height: 50,),
+                                                              RaisedButton(
+                                                                onPressed: () {},
+                                                                color: Colors.blue,
+                                                                child: Text(
+                                                                  'Buy',
+                                                                  style: TextStyle(
+                                                                      color: Colors.white
+                                                                  ),
+                                                                )
+                                                              )
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  );
+                                              }
+                                            );
+                                          },
                                           color: Colors.blue,
                                           child: Text(
                                             'Buy',
