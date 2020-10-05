@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	
+	<key>NSCameraUsageDescription</key>
+	<string>Lol</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>hahahah</string>
+
 	<key>NSHealthShareUsageDescription</key>
 	<string>We will sync your data with the Apple Health app to give you better insights</string>
 	<key>NSHealthUpdateUsageDescription</key>
