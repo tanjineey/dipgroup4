@@ -237,7 +237,7 @@ PODS:
     - Flutter
   - cloud_functions_web (1.0.0):
     - Flutter
-  - device_id (0.0.1):
+  - device_info (0.0.1):
     - Flutter
   - Firebase/Auth (6.26.0):
     - Firebase/CoreOnly
@@ -448,7 +448,7 @@ DEPENDENCIES:
   - cloud_firestore_web (from `.symlinks/plugins/cloud_firestore_web/ios`)
   - cloud_functions (from `.symlinks/plugins/cloud_functions/ios`)
   - cloud_functions_web (from `.symlinks/plugins/cloud_functions_web/ios`)
-  - device_id (from `.symlinks/plugins/device_id/ios`)
+  - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_auth_web (from `.symlinks/plugins/firebase_auth_web/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -511,8 +511,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/cloud_functions/ios"
   cloud_functions_web:
     :path: ".symlinks/plugins/cloud_functions_web/ios"
-  device_id:
-    :path: ".symlinks/plugins/device_id/ios"
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_auth_web:
@@ -554,7 +554,7 @@ SPEC CHECKSUMS:
   cloud_firestore_web: 9ec3dc7f5f98de5129339802d491c1204462bfec
   cloud_functions: d4c231ef524d0d49d89177b3f3f85256c6be4a9a
   cloud_functions_web: ec883775f4a3b3fad943918d2cdad4fbf51cdbf0
-  device_id: 4a0bf078741a3eec6ba0e6cc72e786395d5991b0
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
   firebase_auth: c42c06a212439824b5da53437da905931e8e6b9a
   firebase_auth_web: 0955c07bcc06e84af76b9d4e32e6f31518f2d7de
@@ -604,4 +604,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 4571af7645529b3edbff1eb45f6d3a9f7038c87c
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.8.4
