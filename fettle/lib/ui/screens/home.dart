@@ -5,6 +5,7 @@ import '../../constants.dart';
 import '../../providers/auth.dart';
 import '../components/home/onboardingModal/index.dart';
 import '../components/shared/bottomNavBar.dart';
+import 'package:fettle/ui/components/exercise/session/index.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'home';
@@ -111,7 +112,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   color: Colors.white,
                                                   fontSize: 24)),
                                           onPressed: () {
-                                            _signOut();
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        VideoRoom(
+                                                            groupId:
+                                                                'zonghan')));
+
+                                            // _signOut();
                                           },
                                         ),
                                       ]),

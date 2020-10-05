@@ -23,7 +23,7 @@ class VideoRoom extends StatefulWidget {
 
 class VideoRoomState extends State<VideoRoom> {
   bool _joined = false;
-  int _remoteUid = null;
+  int _remoteUid;
   bool _switch = false;
 
   @override
@@ -53,7 +53,11 @@ class VideoRoomState extends State<VideoRoom> {
       });
     }));
     await engine.enableVideo();
-    await engine.joinChannel(null, '123', null, 0);
+    await engine.joinChannel(
+        '006aae49542fb7e4c98b20b970b8c9ebe00IAAHZ5H2j9BV/CErLRNm+u+tqRl4yz/xTa9vuZH+Eb6hK+Osgc1PMNz+IgD6c1Q2ymF8XwQAAQBaHntfAgBaHntfAwBaHntfBABaHntf',
+        'Zong Han',
+        null,
+        0);
   }
 
   @override
@@ -61,7 +65,7 @@ class VideoRoomState extends State<VideoRoom> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Video Call Test'),
         ),
         body: Stack(
           children: [
